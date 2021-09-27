@@ -1,18 +1,15 @@
-#average throughput
 BEGIN {
 	recv_size=0
 	sTime=1e6
 	spTime=0
 	NumOfRecd=0
 }
-#This awk file works only for new trace format, old trace does not have support
 {
 event =$1
 time=$2
-node_id=$5
 packet=$4
-pkt_id=$41
-packet_size=$37
+pkt_id=$9
+packet_size=$8
 
 if(packet=="AGT" && sendTime[pkt_id] == 0 && (event == "+" || event == "s")) {
 	if (time < sTime) {
