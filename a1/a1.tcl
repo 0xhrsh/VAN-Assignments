@@ -10,7 +10,7 @@ set val(nn)         6                           ;# number of mobilenodes
 set val(rp)         AODV                        ;# routing protocol
 set val(x)          1000                         ;# X dimension of topography
 set val(y)          1000                         ;# Y dimension of topography
-set val(stop)       150                         ;# time of simulation end
+set val(stop)       10                         ;# time of simulation end
 
 set ns          [new Simulator]
 set tracefd     [open trace.tr w]
@@ -91,8 +91,8 @@ $node_(2) set X_ 30.0
 $node_(2) set Y_ 300.0
 $node_(2) set Z_ 0.0
 
-$node_(3) set X_ 210.0
-$node_(3) set Y_ 300.0
+$node_(3) set X_ 150.0
+$node_(3) set Y_ 100.0
 $node_(3) set Z_ 0.0
 
 $node_(4) set X_ 300.0
@@ -105,10 +105,10 @@ $node_(5) set Z_ 0.0
 
 
 # Generation of movements
-$ns at 0.0 "$node_(2) setdest 450.0 300.0 49.0"
-$ns at 0.0 "$node_(3) setdest 30.0 300.0 35.0"
-$ns at 0.0 "$node_(4) setdest 300.0 30.0 57.0"
-$ns at 0.0 "$node_(5) setdest 150.0 300.0 45.0"
+$ns at 0.0 "$node_(2) setdest 450.0 300.0 59.0"
+$ns at 0.0 "$node_(3) setdest 150.0 600.0 75.0"
+$ns at 0.0 "$node_(4) setdest 300.0 30.0 67.0"
+$ns at 0.0 "$node_(5) setdest 50.0 300.0 85.0"
 
 # Set a TCP connection between node (2) and node (3)
 set tcp [new Agent/TCP]
@@ -119,10 +119,10 @@ $ns connect $tcp $sink
 set ftp [new Application/FTP]
 $ftp attach-agent $tcp
 $ns at 0.0 "$ftp start"
-$ns at 150.0 "$ftp stop"
+$ns at 10.0 "$ftp stop"
 
 
-# Set a TCP connection between node (5) and node (1)
+# Set a TCP connection between node (4) and node (1)
 set tcp [new Agent/TCP]
 set sink [new Agent/TCPSink]
 $ns attach-agent $node_(4) $tcp
@@ -131,9 +131,9 @@ $ns connect $tcp $sink
 set ftp [new Application/FTP]
 $ftp attach-agent $tcp
 $ns at 0.0 "$ftp start"
-$ns at 150.0 "$ftp stop"
+$ns at 10.0 "$ftp stop"
 
-# Set a TCP connection between node (4) and node (0)
+# Set a TCP connection between node (5) and node (0)
 set tcp [new Agent/TCP]
 set sink [new Agent/TCPSink]
 $ns attach-agent $node_(5) $tcp
@@ -142,7 +142,7 @@ $ns connect $tcp $sink
 set ftp [new Application/FTP]
 $ftp attach-agent $tcp
 $ns at 0.0 "$ftp start"
-$ns at 150.0 "$ftp stop"
+$ns at 10.0 "$ftp stop"
 
 
 # Define node initial position in nam
@@ -160,7 +160,7 @@ $ns at $val(stop) "$node_($i) reset";
 # ending nam and the simulation
 $ns at $val(stop) "$ns nam-end-wireless $val(stop)"
 $ns at $val(stop) "stop"
-$ns at 150.01 "puts \"end simulation\" ; $ns halt"
+$ns at 10.0 "puts \"end simulation\" ; $ns halt"
 proc stop {} {
     global ns tracefd namtrace
     $ns flush-trace
