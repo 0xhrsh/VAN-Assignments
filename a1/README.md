@@ -10,5 +10,5 @@
     - `nam out.nam`
 - To see the analysis:
     - Throughput: `awk -f throughput.awk trace.tr` The average throughput should be about 1.29 kbps
-    - Packet Delivery Ratio: `awk -f pdr.awk trace.tr` The pdr should be about 0.93
+    - Packet Delivery Ratio: `awk -f pdr.awk trace.tr` The pdr should be about 0.96
     - Packet Loss Ration: `awk -f plr.awk trace.tr` The plr should be about 0.04
