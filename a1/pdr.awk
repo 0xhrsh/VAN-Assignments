@@ -1,21 +1,21 @@
 BEGIN {
-	sendPkt =0
+	sendPkt=0
 	recvPkt=0
 	forwardPkt=0
 }
 
 {
 packet=$4
-event = $1
-if(event =="s" && packet == "AGT") {
+event=$1
+if(event == "s" && packet == "AGT") {
 	sendPkt++;
 }
 
-if(event =="r" && packet == "AGT") {
+if(event == "r" && packet == "AGT") {
 	recvPkt++;
 }
 
-if(event =="f" && packet == "RTR") {
+if(event == "f" && packet == "RTR") {
 	forwardPkt++;
 }
 

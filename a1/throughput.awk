@@ -24,16 +24,11 @@ if(packet=="AGT" && event == "r") {
 	}
 	recv_size = recv_size + packet_size
 	recvTime[pkt_id] = time
-	NumOfRecd = NumOfRecd + 1
+	NumOfRecd++;
 }
 }
 
 END {
-	if (NumOfRecd ==0) {
-		printf("No packets, the simulation might be very small \n")
-	}
-	printf("Start Time %d\n", sTime)
-	printf("Stop Time %d\n", spTime)
 	printf("Received Packets %d\n", NumOfRecd)
 	printf("The throughput in kbps is %f \n", (NumOfRecd/(spTime-sTime)*(8/1000)))		
 }

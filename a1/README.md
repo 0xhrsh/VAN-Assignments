@@ -4,7 +4,7 @@
 - There are 2 RSUs (node 0 and node 1)
 - Nodes 2, 3, 4, 5 are vehicles.
 
-# How to run:
+## How to run:
 - To run the simulation:
     - `ns a1.tcl`
     - `nam out.nam`
