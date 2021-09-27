@@ -14,5 +14,5 @@ BEGIN {
 END {
     print "Packets Sent: " sent;
     print "Packets Recieved: " recieved;
-    print "Packets Dropped (%): " (sent-recieved)/sent*100;
+    print "Packets Dropped ratio: " (sent-recieved)/sent;
 }
